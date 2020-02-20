@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="body">
+    <h:body>
+        <h:form id="form">
+            <p:growl id="msg"/> 
+            <p:dataTable id="dtpeliculas" value="#{peliculasSeriesBean.listadopeliculas}" var="fila"
+                     editable="true" >
+            <p:column>
+                <h:selectBooleanCheckbox value="#{fila.selected}"/> 
+            </p:column>
+            
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Nombre"/>
+                </f:facet>
+                <h:outputText value="#{fila.name}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Descripcion"/>
+                </f:facet>
+                <h:outputText value="#{fila.descripcion}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Calificacion"/>
+                </f:facet>
+                <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{fila.calificacion}"/>
+                </f:facet>
+                <f:facet name="input">
+                    <h:inputText value="#{peliculasSeriesBean.calificacion}"/>
+                </f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:ajax event="rowEdit" listener="#{peliculasSeriesBean.actualizar}"></p:ajax>
+            <p:ajax event="rowEditCancel" listener="#{peliculasSeriesBean.cancelar}"></p:ajax>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Año"/>
+                </f:facet>
+                <h:outputText value="#{fila.anio}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">Ver mas</f:facet>
+                <h:commandButton value="Detalles" action="#{peliculasSeriesBean.seleccionar(fila)}"/>
+            </p:column>
+            <p:column>
+                <p:rowEditor/> 
+            </p:column>       
+        </p:dataTable>
+        <p:commandButton value="Eliminar" actionListener="#{peliculasSeriesBean.eliminar()}"
+                         update="form" icon="ui-icon-trash">
+            <p:confirm message="Seguro de eliminar?" header="aviso" icon="ui-icon-alert"/>
+            <p:confirmDialog global="true">
+                <p:commandButton value="Si" type="button" icon="ui-icon-check"
+                                 styleClass="ui-confirmdialog-yes"/>
+                <p:commandButton value="No" type="button" icon="ui-icon-close"
+                                 styleClass="ui-confirmdialog-no"/>
+            </p:confirmDialog>
+        
+        </p:commandButton>
+                
+              <hr/>  
+              
+              <p:growl id="messages" showDetail="true" />
+ 
+
+            <h:form enctype="multipart/form-data">
+                <table>
+                                      
+                    <tr>
+                       <td>Id</td> 
+                       <td><h:inputText value="#{peliculasSeriesBean.peliculasdetalles.id}"/></td>
+                    </tr>
+                    <tr>
+                       <td>Nombre:</td> 
+                       <td><h:inputText value="#{peliculasSeriesBean.peliculasdetalles.name}"/></td>
+                    </tr>
+                    <tr>
+                       <td>Descripción:</td> 
+                       <td><h:inputText value="#{peliculasSeriesBean.peliculasdetalles.descripcion}"/></td>
+                    </tr>
+                    <tr>
+                       <td>Calificación:</td> 
+                       <td><h:inputText value="#{peliculasSeriesBean.peliculasdetalles.calificacion}"/></td>
+                    </tr>
+                    <tr>
+                       <td>Año:</td> 
+                       <td><h:inputText value="#{peliculasSeriesBean.peliculasdetalles.anio}"/></td>
+                    </tr>
+                    <tr>
+                       <td>Director</td> 
+                       <td><h:inputText value="#{peliculasSeriesBean.peliculasdetalles.director}"/></td>
+                    </tr>
+                    <tr>
+                       <td>Reparto</td> 
+                       <td><h:inputText value="#{peliculasSeriesBean.peliculasdetalles.reparto}"/></td>
+                    </tr>
+                    
+                </table>       
+                </h:form>
+                </h:form>
+    </h:body>
+    </ui:define>
+    </ui:composition>
+</html>
+

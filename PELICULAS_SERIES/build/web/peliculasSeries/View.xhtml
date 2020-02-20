@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PeliculasSeriesViewDlg" widgetVar="PeliculasSeriesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPeliculasSeriesTitle}">
+            <h:form id="PeliculasSeriesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{peliculasSeriesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPeliculasSeriesLabel_id}"/>
+                        <h:outputText value="#{peliculasSeriesController.selected.id}" title="#{bundle.ViewPeliculasSeriesTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewPeliculasSeriesLabel_name}"/>
+                        <h:outputText value="#{peliculasSeriesController.selected.name}" title="#{bundle.ViewPeliculasSeriesTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewPeliculasSeriesLabel_descripcion}"/>
+                        <h:outputText value="#{peliculasSeriesController.selected.descripcion}" title="#{bundle.ViewPeliculasSeriesTitle_descripcion}"/>
+                        <h:outputText value="#{bundle.ViewPeliculasSeriesLabel_calificacion}"/>
+                        <h:outputText value="#{peliculasSeriesController.selected.calificacion}" title="#{bundle.ViewPeliculasSeriesTitle_calificacion}"/>
+                        <h:outputText value="#{bundle.ViewPeliculasSeriesLabel_anio}"/>
+                        <h:outputText value="#{peliculasSeriesController.selected.anio}" title="#{bundle.ViewPeliculasSeriesTitle_anio}"/>
+                        <h:outputText value="#{bundle.ViewPeliculasSeriesLabel_pais}"/>
+                        <h:outputText value="#{peliculasSeriesController.selected.pais}" title="#{bundle.ViewPeliculasSeriesTitle_pais}"/>
+                        <h:outputText value="#{bundle.ViewPeliculasSeriesLabel_director}"/>
+                        <h:outputText value="#{peliculasSeriesController.selected.director}" title="#{bundle.ViewPeliculasSeriesTitle_director}"/>
+                        <h:outputText value="#{bundle.ViewPeliculasSeriesLabel_reparto}"/>
+                        <h:outputText value="#{peliculasSeriesController.selected.reparto}" title="#{bundle.ViewPeliculasSeriesTitle_reparto}"/>
+                        <h:outputText value="#{bundle.ViewPeliculasSeriesLabel_pelicula}"/>
+                        <p:selectBooleanCheckbox value="#{peliculasSeriesController.selected.pelicula}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewPeliculasSeriesLabel_imagen}"/>
+                        <h:outputText value="#{peliculasSeriesController.selected.imagen}" title="#{bundle.ViewPeliculasSeriesTitle_imagen}"/>
+                        <h:outputText value="#{bundle.ViewPeliculasSeriesLabel_genero}"/>
+                        <h:outputText value="#{peliculasSeriesController.selected.genero}" title="#{bundle.ViewPeliculasSeriesTitle_genero}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PeliculasSeriesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

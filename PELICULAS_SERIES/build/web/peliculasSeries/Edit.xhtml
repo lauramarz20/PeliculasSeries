@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PeliculasSeriesEditDlg" widgetVar="PeliculasSeriesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPeliculasSeriesTitle}">
+            <h:form id="PeliculasSeriesEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{peliculasSeriesController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPeliculasSeriesLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{peliculasSeriesController.selected.name}" title="#{bundle.EditPeliculasSeriesTitle_name}" required="true" requiredMessage="#{bundle.EditPeliculasSeriesRequiredMessage_name}"/>
+                        <p:outputLabel value="#{bundle.EditPeliculasSeriesLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{peliculasSeriesController.selected.descripcion}" title="#{bundle.EditPeliculasSeriesTitle_descripcion}" />
+                        <p:outputLabel value="#{bundle.EditPeliculasSeriesLabel_calificacion}" for="calificacion" />
+                        <p:inputText id="calificacion" value="#{peliculasSeriesController.selected.calificacion}" title="#{bundle.EditPeliculasSeriesTitle_calificacion}" />
+                        <p:outputLabel value="#{bundle.EditPeliculasSeriesLabel_anio}" for="anio" />
+                        <p:inputText id="anio" value="#{peliculasSeriesController.selected.anio}" title="#{bundle.EditPeliculasSeriesTitle_anio}" />
+                        <p:outputLabel value="#{bundle.EditPeliculasSeriesLabel_pais}" for="pais" />
+                        <p:inputText id="pais" value="#{peliculasSeriesController.selected.pais}" title="#{bundle.EditPeliculasSeriesTitle_pais}" />
+                        <p:outputLabel value="#{bundle.EditPeliculasSeriesLabel_director}" for="director" />
+                        <p:inputText id="director" value="#{peliculasSeriesController.selected.director}" title="#{bundle.EditPeliculasSeriesTitle_director}" />
+                        <p:outputLabel value="#{bundle.EditPeliculasSeriesLabel_reparto}" for="reparto" />
+                        <p:inputText id="reparto" value="#{peliculasSeriesController.selected.reparto}" title="#{bundle.EditPeliculasSeriesTitle_reparto}" />
+                        <p:outputLabel value="#{bundle.EditPeliculasSeriesLabel_pelicula}" for="pelicula" />
+                        <p:selectBooleanCheckbox id="pelicula" value="#{peliculasSeriesController.selected.pelicula}" />
+                        <p:outputLabel value="#{bundle.EditPeliculasSeriesLabel_imagen}" for="imagen" />
+                        <p:inputTextarea rows="4" cols="30" id="imagen" value="#{peliculasSeriesController.selected.imagen}" title="#{bundle.EditPeliculasSeriesTitle_imagen}" />
+                        <p:outputLabel value="#{bundle.EditPeliculasSeriesLabel_genero}" for="genero" />
+                        <p:selectOneMenu id="genero" value="#{peliculasSeriesController.selected.genero}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{generoController.itemsAvailableSelectOne}"
+                                           var="generoItem"
+                                           itemValue="#{generoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{peliculasSeriesController.update}" value="#{bundle.Save}" update="display,:PeliculasSeriesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PeliculasSeriesEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PeliculasSeriesEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
